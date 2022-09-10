@@ -11,7 +11,17 @@ services:
       POSTGRES_PASSWORD: '123456'
       POSTGRES_USER: 'docker'
     volumes:
-      - data:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/db-data
+  pgadmin:
+    image: 'dpage/pgadmin4'
+    ports:
+      - '1234:80'
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 'user@domain.com'
+      PGADMIN_DEFAULT_PASSWORD: '123456'
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
 
 volumes:
-  data:
+  db-data:
+  pgadmin-data:
